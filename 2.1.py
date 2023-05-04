@@ -1,6 +1,6 @@
 import csv
 
-with open('Books.csv', 'w', newline='') as file: #Записали информацию о книгах в таблицу формата .csv
+with open('Books.csv', 'w', newline='') as file: # Записали информацию о книгах в таблицу формата .csv
     writer = csv.writer(file)
     writer.writerow(['Наименование книги', 'Писатель / Автор', 'Страна автора', 'Год издания'])
     writer.writerow(['«Властелин колец»', 'Джон Р. Р. Толкин', 'Великобритания', '1954'])
