@@ -24,7 +24,7 @@ end_year = int(input("Введите конечный год: "))
 
 with open("Books.csv", "r", newline="") as file:
     reader = csv.reader(file)
-    for i, row in enumerate(reader, start=1):
+    for i, row in enumerate(reader, 1):
         if i >= 2 and start_year <= int(row[3]) <= end_year:
             print(f"{i}. {row[0]} ({row[1]}, {row[2]}, {row[3]})")
 
@@ -34,7 +34,7 @@ print('===========================')
 
 with open("Books.csv", "r", newline="") as file:
     reader = csv.reader(file)
-    for i, row in enumerate(reader, start=1):
+    for i, row in enumerate(reader, 1):
         print(f"{i}. {row[0]} ({row[1]}, {row[2]}, {row[3]})")
 
 #Код для изменения данных в файле
@@ -47,7 +47,7 @@ with open("Books.csv", "r", newline="") as file:
 
 # удаляем строку с указанным порядковым номером
 index = int(input("Введите номер строки, которую нужно удалить: "))
-del data[index]
+del data[index - 1]
 
 print('===========================')
 

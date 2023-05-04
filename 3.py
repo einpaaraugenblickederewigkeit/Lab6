@@ -1,24 +1,21 @@
 import requests
 
-# параметры запроса
-url = 'https://api.openweathermap.org/data/2.5/weather'
-params = {
-    'q': 'Moscow',  # наименование города
-    'appid': 'd2abe737dccf6a8c199c4d475f87a0e1',  # API-ключ
-    'units': 'metric'  # система измерения (метрическая)
-}
+city = input("Введите город: ")
 
-# выполнение запроса
-response = requests.get(url, params=params)
+url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid=d2abe737dccf6a8c199c4d475f87a0e1&units=metric&lang=ru' #Адрес запроса с моим ключем на OpenWeatherMap 
+response = requests.get(url)
 
-# проверка статуса ответа
-if response.status_code == 200:
-    # получение данных о погоде
-    weather = response.json()
-    print(f"Текущая температура в городе {weather['name']}: {weather['main']['temp']} градусов Цельсия")
+if response.status_code == 200: #Если код ответа равен 200, значит данные получены, и можно из json файла вынимать нужную информацию
+    data = response.json()
+    temp = data['main']['temp']
+    feels_like = data['main']['feels_like']
+    wind_speed = data['wind']['speed']
+    description = data['weather'][0]['description']
+    print(f"Текущая погода в {city}:")
+    print(f"Температура: {temp} °C")
+    print(f"Ощущается как: {feels_like} °C")
+    print(f"Скорость ветра: {wind_speed} м/с")
+    print(f"На небе {description}")
 else:
-    # обработка ошибки
-    print("Ошибка при выполнении запроса")
-    print(response.status_code)
-
+    print("Ошибка при получении данных о погоде")
 
